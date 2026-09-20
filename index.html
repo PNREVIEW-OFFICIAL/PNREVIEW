@@ -411,7 +411,7 @@
         </div>
 
         <div class="action-buttons">
-          <button type="button" class="btn-cta" style="border:none; cursor:pointer;" onclick="inviaMail()">Invia richiesta via email</button>
+         <button type="button" class="btn-cta" style="border:none; cursor:pointer; width:100%;" onclick="inviaGmail()">Invia richiesta via email</button>
           <a href="https://wa.me/393283251635" class="btn-whatsapp" target="_blank">Scrivi a Bacary su WhatsApp</a>
           <a href="https://wa.me/393755490759" class="btn-whatsapp" target="_blank">Scrivi a Davide su WhatsApp</a>
         </div>
@@ -438,17 +438,20 @@
   </footer>
 
   <script>
-    function inviaMail() {
-      const nome = document.getElementById('nome').value;
-      const cognome = document.getElementById('cognome').value;
-      const servizio = document.getElementById('servizio').value;
-      const data = document.getElementById('data').value;
-      const orario = document.getElementById('orario').value;
+    function inviaGmail() {
+      const nome = document.getElementById('nome').value || '';
+      const cognome = document.getElementById('cognome').value || '';
+      const azienda = document.getElementById('azienda').value || '';
+      const servizio = document.getElementById('servizio').value || '';
+      const data = document.getElementById('data').value || '';
+      const orario = document.getElementById('orario').value || '';
+      const note = document.getElementById('note').value || '';
       
-      const body = `Ciao! Richiesta di colloquio da ${nome} ${cognome}. Servizio: ${servizio}. Data preferita: ${data} alle ${orario}.`;
-      window.location.href = `mailto:bakarysy1466@gmail.com?subject=Richiesta Colloquio - ${nome}&body=${encodeURIComponent(body)}`;
+      const oggetto = encodeURIComponent(`Richiesta Colloquio PNREVIEW - ${nome} ${cognome}`);
+      const testo = encodeURIComponent(`Ciao Bacary e Davide,\n\nVorrei prenotare un colloquio.\n\n- Nome: ${nome} ${cognome}\n- Azienda: ${azienda}\n- Servizio: ${servizio}\n- Data richiesta: ${data} alle ore ${orario}\n- Note: ${note}`);
+      
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=bakarysy1466@gmail.com&su=${oggetto}&body=${testo}`, '_blank');
     }
   </script>
-
 </body>
 </html>
