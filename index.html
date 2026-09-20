@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bacary Sy & Davide Pantarotto — Recensioni Google e Siti Web</title>
+  <style>
+    :root {
+      --primary-color: #0f172a;
+      --accent-color: #1e3a8a;
+      --cta-color: #2d5a27;
+      --cta-hover: #1e3e1a;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-color: #334155;
+      --border-color: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary-color);
+    }
+
+    .brand span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #64748b;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .btn-cta {
+      background-color: var(--cta-color);
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn-cta:hover {
+      background-color: var(--cta-hover);
+    }
+
+    .hero {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #475569;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-secondary {
+      background-color: #e2e8f0;
+      color: var(--primary-color);
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .card.popular {
+      border: 2px solid var(--cta-color);
+    }
+
+    .badge {
+      position: absolute;
+      top: -12px;
+      left: 15px;
+      background: var(--cta-color);
+      color: white;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .card .price {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-top: 1rem;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .faq-item h4 {
+      font-size: 1.05rem;
+      color: var(--primary-color);
+      margin-bottom: 0.4rem;
+    }
+
+    .booking-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .booking-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .btn-whatsapp {
+      background-color: #25d366;
+      color: white;
+      text-align: center;
+      padding: 0.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 3rem 1.5rem;
+      margin-top: 5rem;
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-content a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      Bacary & Davide
+      <span>recensioni & siti web</span>
+    </div>
+    <nav>
+      <a href="#servizi">Servizi</a>
+      <a href="#prezzi">Prezzi</a>
+      <a href="#domande">Domande</a>
+      <a href="#prenota" class="btn-cta">Prenota una chiamata</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Più recensioni Google, un sito che le mostra bene.</h1>
+    <p>Siamo Bacary Sy e Davide Pantarotto. Aiutiamo negozi, studi e attività locali a raccogliere recensioni vere su Google con una semplice card da appoggiare al bancone, e costruiamo il sito che le mette in mostra.</p>
+    <div class="hero-actions">
+      <a href="#prezzi" class="btn-secondary">Vedi i prezzi</a>
+      <a href="#prenota" class="btn-cta">Fissa un colloquio</a>
+    </div>
+  </section>
+
+  <section id="servizi" class="section">
+    <h2 class="section-title">Due servizi, un solo obiettivo: farti trovare meglio</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <h3>Google Review Card</h3>
+        <p>Una card fisica che il cliente avvicina al telefono: si apre subito la pagina per lasciare una recensione su Google, senza cercare nulla e senza digitare link. Più recensioni raccolte, con meno sforzo per te e per chi te la lascia.</p>
+      </div>
+      <div class="card">
+        <h3>Creazione siti web</h3>
+        <p>Un sito semplice e curato per presentare la tua attività, i tuoi servizi e i tuoi contatti, con lo spazio giusto per mostrare le recensioni raccolte. Pensato per chi vuole essere trovato senza dover gestire cose complicate.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="prezzi" class="section">
+    <h2 class="section-title">Prezzi chiari, senza sorprese</h2>
+    <p style="margin-bottom: 1.5rem;">Puoi scegliere solo le card, solo il sito, oppure il pacchetto completo a un prezzo più conveniente.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <h3>Google Review Card — singola</h3>
+        <p>Una card per raccogliere recensioni in un unico punto della tua attività.</p>
+        <div class="price">30€</div>
+      </div>
+      <div class="card">
+        <h3>Google Review Card — coppia</h3>
+        <p>Due card, utili per due postazioni o per avere sempre una di scorta.</p>
+        <div class="price">50€</div>
+      </div>
+      <div class="card">
+        <h3>Google Review Card — tris</h3>
+        <p>Tre card, per attività con più postazioni o più punti cassa.</p>
+        <div class="price">80€</div>
+      </div>
+      <div class="card">
+        <h3>Google Review Card — quattro card</h3>
+        <p>Quattro card, per coprire ogni angolo della tua attività.</p>
+        <div class="price">100€</div>
+      </div>
+      <div class="card">
+        <h3>Google Review Card — cinque card</h3>
+        <p>Cinque card, la scelta più completa per attività più grandi.</p>
+        <div class="price">125€</div>
+      </div>
+      <div class="card">
+        <h3>Solo creazione del sito</h3>
+        <p>Il tuo sito web, costruito da zero attorno alla tua attività.</p>
+        <div class="price">80€</div>
+      </div>
+      <div class="card popular">
+        <span class="badge">Il più richiesto</span>
+        <h3>Sito web + Google Review Card</h3>
+        <p>Il pacchetto completo: il sito e la card per raccogliere recensioni, insieme.</p>
+        <div class="price">100€</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="domande" class="section">
+    <h2 class="section-title">Domande frequenti</h2>
+    <div class="faq-item">
+      <h4>Come funziona la Google Review Card?</h4>
+      <p>È una card con tecnologia NFC e QR code: il cliente la avvicina al telefono (oppure inquadra il codice) e si apre direttamente la pagina Google dove può scrivere la recensione. Nessuna app da scaricare.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Quanto tempo serve per avere il sito pronto?</h4>
+      <p>Dipende dai contenuti che ci fornisci, ma di solito tra una settimana e dieci giorni dal primo colloquio abbiamo una bozza da mostrarti.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Posso richiedere modifiche dopo la consegna?</h4>
+      <p>Sì, dopo la consegna del sito o delle card restiamo disponibili per piccoli aggiustamenti: ne parliamo insieme durante il colloquio.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Come si paga?</h4>
+      <p>Ne concordiamo le modalità direttamente durante il colloquio conoscitivo, in base al servizio scelto.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Le card funzionano su tutti gli smartphone?</h4>
+      <p>Sì: se il telefono non supporta l'NFC, il cliente può comunque inquadrare il QR code stampato sulla card.</p>
+    </div>
+  </section>
+
+  <section id="prenota" class="section">
+    <h2 class="section-title">Fissiamo un colloquio</h2>
+    <div class="booking-container">
+      <form id="booking-form">
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" id="nome" required>
+        </div>
+        <div class="form-group">
+          <label>Cognome</label>
+          <input type="text" id="cognome" required>
+        </div>
+        <div class="form-group">
+          <label>Nome dell'azienda</label>
+          <input type="text" id="azienda">
+        </div>
+        <div class="form-group">
+          <label>Servizio richiesto</label>
+          <select id="servizio">
+            <option>Google Review Card singola — 30€</option>
+            <option>Google Review Card coppia — 50€</option>
+            <option>Google Review Card tris — 80€</option>
+            <option>Google Review Card quattro card — 100€</option>
+            <option>Google Review Card cinque card — 125€</option>
+            <option>Solo creazione sito web — 80€</option>
+            <option selected>Sito web + Google Review Card — 100€</option>
+            <option>Non sono ancora sicuro/a</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Note (facoltativo)</label>
+          <textarea id="note" rows="2"></textarea>
+        </div>
+      </form>
+
+      <div>
+        <h3>Scegli una data</h3>
+        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem;">Lavoriamo tutti i giorni dalle 13:00 alle 20:00 (Domenica orario continuato 9:00 - 20:00).</p>
+        <div class="form-group">
+          <label>Data</label>
+          <input type="date" id="data">
+        </div>
+        <div class="form-group">
+          <label>Orario</label>
+          <input type="time" id="orario" min="13:00" max="20:00">
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="btn-cta" style="border:none; cursor:pointer;" onclick="inviaMail()">Invia richiesta via email</button>
+          <a href="https://wa.me/393283251635" class="btn-whatsapp" target="_blank">Scrivi a Bacary su WhatsApp</a>
+          <a href="https://wa.me/393755490759" class="btn-whatsapp" target="_blank">Scrivi a Davide su WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h3>Bacary Sy & Davide Pantarotto</h3>
+        <p>Google Review Card e siti web per attività locali.</p>
+      </div>
+      <div>
+        <p><strong>Telefono:</strong></p>
+        <p>Bacary — <a href="tel:3283251635">328 325 1635</a></p>
+        <p>Davide — <a href="tel:3755490759">375 549 0759</a></p>
+        <p><strong>Email:</strong> <a href="mailto:bakarysy1466@gmail.com">bakarysy1466@gmail.com</a></p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 2rem; font-size: 0.85rem; color: #94a3b8;">
+      &copy; 2026 Bacary Sy & Davide Pantarotto
+    </div>
+  </footer>
+
+  <script>
+    function inviaMail() {
+      const nome = document.getElementById('nome').value;
+      const cognome = document.getElementById('cognome').value;
+      const servizio = document.getElementById('servizio').value;
+      const data = document.getElementById('data').value;
+      const orario = document.getElementById('orario').value;
+      
+      const body = `Ciao! Richiesta di colloquio da ${nome} ${cognome}. Servizio: ${servizio}. Data preferita: ${data} alle ${orario}.`;
+      window.location.href = `mailto:bakarysy1466@gmail.com?subject=Richiesta Colloquio - ${nome}&body=${encodeURIComponent(body)}`;
+    }
+  </script>
+
+</body>
+</html>
